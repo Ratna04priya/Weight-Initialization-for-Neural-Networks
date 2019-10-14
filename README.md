@@ -30,6 +30,7 @@ We'll be using the MNIST dataset to demonstrate the different initial weights. A
 For the neural network, we'll test on a 3 layer neural network with ReLU activations and an Adam optimizer. The lessons you learn apply to other neural networks, including different activations and optimizers.
 
 
+
 ## Initialize Weights
 
 All Zeros or Ones
@@ -62,6 +63,40 @@ Let's see if this holds true, let's first center our range over zero. This will 
 
 Let's compare [-0.1, 0.1), [-0.01, 0.01), and [-0.001, 0.001) to see how small is too small. We'll also set plot_n_batches=None to show all the batches in the plot.
 
+## Normal Distribution
+
+Unlike the uniform distribution, the normal distribution has a higher likelihood of picking number close to it's mean. To visualize it, let's plot values from TensorFlow's tf.random_normal function to a histogram.
+
+tf.random_normal(shape, mean=0.0, stddev=1.0, dtype=tf.float32, seed=None, name=None)
+
+Outputs random values from a normal distribution.
+
+ shape: A 1-D integer Tensor or Python array. The shape of the output tensor.
+ mean: A 0-D Tensor or Python value of type dtype. The mean of the normal distribution.
+ stddev: A 0-D Tensor or Python value of type dtype. The standard deviation of the normal distribution.
+ dtype: The type of the output.
+ seed: A Python integer. Used to create a random seed for the distribution. See tf.set_random_seed for behavior.
+ name: A name for the operation (optional).
+ 
+ ## Truncated Normal Distribution
+
+tf.truncated_normal(shape, mean=0.0, stddev=1.0, dtype=tf.float32, seed=None, name=None)
+
+Outputs random values from a truncated normal distribution.
+
+The generated values follow a normal distribution with specified mean and standard deviation, except that values whose magnitude is more than 2 standard deviations from the mean are dropped and re-picked.
+
+shape: A 1-D integer Tensor or Python array. The shape of the output tensor.
+mean: A 0-D Tensor or Python value of type dtype. The mean of the truncated normal distribution.
+stddev: A 0-D Tensor or Python value of type dtype. The standard deviation of the truncated normal distribution.
+dtype: The type of the output.
+seed: A Python integer. Used to create a random seed for the distribution. See tf.set_random_seed for behavior.
+name: A name for the operation (optional).
+
+
+
+
+_There's no difference between the two, but that's because the neural network we're using is too small. A larger neural network will pick more points on the normal distribution, increasing the likelihood it's choices are larger than 2 standard deviations._
 
 
 
